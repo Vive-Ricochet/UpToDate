@@ -7,8 +7,8 @@ public class Parry : MonoBehaviour
     private InputManager input;
     private int player_num;
 
-    int parryp1 = 0;
-    int parryp2 = 0;
+    public static int parryp1 = 0;
+    public static int parryp2 = 0;
 
     private int startFrame;
     private int parryProgress;

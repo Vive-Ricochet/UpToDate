@@ -8,6 +8,12 @@ public class  ProjectileMaker : MonoBehaviour {
     private int player_num;
 
     public GameObject currentProjectile = null;
+	public GameObject player;
+
+	public static int furyP1;
+	public static int furyP2;
+	public static int hoardP1;
+	public static int hoardP2;
 
     private float gravity = 50;
     private bool canPickUp = false;
@@ -20,6 +26,10 @@ public class  ProjectileMaker : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		print ("P1 Fury: " + furyP1);
+		print ("P2 Fury: " + furyP2);
+		print ("P1 Hoard: " + hoardP1);
+		print ("P2 Hoard: " + hoardP2);
 
         input = GameObject.Find("InputManager").GetComponent<InputManager>();
         player_num = GetComponent<PlayerMovement>().player_num;
@@ -84,6 +94,12 @@ public class  ProjectileMaker : MonoBehaviour {
 
     // Append an item to the current projectile
     public void appendItem(Collider other) {
+		if (player.name == "human1") {
+			hoardP1 += 1;
+		}
+		if (player.name == "human2") {
+			hoardP2 += 1;
+		}
 
         if (currentProjectile == null) {
             currentProjectile = buildNewProjectile();
@@ -111,6 +127,13 @@ public class  ProjectileMaker : MonoBehaviour {
         if (currentProjectile != null) {
             throwing = true;
             animator.SetBool("Throwing", throwing);
+
+			if (player.name == "human1") {
+				furyP1 += 1;
+			}
+			if (player.name == "human2") {
+				furyP2 += 1;
+			}
 
             // getting initial projectile references
             Vector3 projectilePosition = currentProjectile.transform.position;
